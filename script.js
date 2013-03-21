@@ -67,3 +67,29 @@ btnClear.addEventListener("click", function () {
   number = null;
   operator = null;
 });
+
+function useOperation(op) {
+  if (number !== null && operator !== null) {
+    equals();
+  } else {
+    number = parseFloat(result.innerText);
+  }
+
+  operator = op;
+  result.innerText = "";
+}
+
+function equals() {
+  if (operator === "+") {
+    result.innerText = number + parseFloat(result.innerText);
+  } else if (operator === "-") {
+    result.innerText = number - parseFloat(result.innerText);
+  } else if (operator === "*") {
+    result.innerText = number * parseFloat(result.innerText);
+  } else if (operator === "/") {
+    result.innerText = number / parseFloat(result.innerText);
+  }
+
+  number = parseFloat(result.innerText);
+  operator = null;
+}
