@@ -9,9 +9,10 @@ body {
   border: 1px solid black;
   margin: 0 auto;
   padding: 5px;
+  background-color: #d9d9d9;
 }
 
-p {
+#result {
   width: 200px;
   height: 50px;
   font-size: 20px;
@@ -50,7 +51,27 @@ button.operator {
   background-color: #4caf50;
 }
 
+button.operator:hover {
+  background-color: #45a049;
+}
+
+button.operator:active {
+  background-color: #3e8e41;
+}
+
 button.decimal {
   color: #333;
   background-color: #f0f0f0;
+}
+
+button.decimal:hover {
+  background-color: #e0e0e0;
+}
+
+button.decimal:active {
+  background-color: #ccc;
+}
+
+#btn-clear {
+  width: 213px;
 }

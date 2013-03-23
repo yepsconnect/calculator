@@ -2,8 +2,7 @@ var result = document.getElementById("result");
 var number = null;
 var operator = null;
 
-function handleNumberClick(e) {
-  var digit = e.target.dataset.value;
+function handleNumberClick(digit) {
   if (result.innerText === "Error") {
     result.innerText = digit;
   } else {
@@ -57,7 +56,9 @@ function clear() {
 
 var numberButtons = document.querySelectorAll(".number");
 for (var i = 0; i < numberButtons.length; i++) {
-  numberButtons[i].addEventListener("click", handleNumberClick);
+  numberButtons[i].addEventListener("click", function () {
+    handleNumberClick(this.dataset.value);
+  });
 }
 
 document
@@ -71,3 +72,25 @@ for (var i = 0; i < operatorButtons.length; i++) {
 
 document.getElementById("btn-equals").addEventListener("click", equals);
 document.getElementById("btn-clear").addEventListener("click", clear);
+
+document.addEventListener("keydown", function (event) {
+  var keyPressed = event.key || String.fromCharCode(event.keyCode);
+  if (/[\d.]/.test(keyPressed)) {
+    event.preventDefault();
+    handleNumberClick(keyPressed);
+  } else if (
+    keyPressed === "+" ||
+    keyPressed === "-" ||
+    keyPressed === "*" ||
+    keyPressed === "/"
+  ) {
+    event.preventDefault();
+    handleOperatorClick({ target: { dataset: { value: keyPressed } } });
+  } else if (keyPressed === "=" || keyPressed === "Enter") {
+    event.preventDefault();
+    equals();
+  } else if (keyPressed === "c" || keyPressed === "C") {
+    event.preventDefault();
+    clear();
+  }
+});
